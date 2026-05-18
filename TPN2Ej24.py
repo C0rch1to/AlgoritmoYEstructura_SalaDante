@@ -43,7 +43,7 @@ pila.push(("Captain Marvel", 3))
 
 # Resolución
 aux = Stack()
-
+DCG = []
 posicion = 1
 pos_rocket = None
 pos_groot = None
@@ -59,29 +59,28 @@ while pila.size() > 0:
     # Punto a)
     if nombre == "Rocket Raccoon":
         pos_rocket = posicion
-
     if nombre == "Groot":
         pos_groot = posicion
 
-    # Punto b)
-    if peliculas > 5:
+    # Punto b) y Punto c)
+    if peliculas > 5 or nombre == "Black Widow":
         print(nombre, "-", peliculas, "películas")
 
-    # Punto c)
-    if nombre == "Black Widow":
-        print("\nBlack Widow participó en", peliculas, "películas")
-
+    
     # Punto d)
     if nombre[0] in ["C", "D", "G"]:
-        print("\nEmpieza con C, D o G:", nombre)
+        DCG.append(nombre)
 
     aux.push(personaje)
-
     posicion += 1
 
 # Mostrar posiciones
 print("\nRocket Raccoon está en la posición:", pos_rocket)
 print("Groot está en la posición:", pos_groot)
+
+print("\nPersonajes que comienzan con C, D o G: ")
+for i in range (0, len(DCG)):
+    print(DCG[i])
 
 # Restaurar pila original
 while aux.size() > 0:
