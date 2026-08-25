@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Optional
 
 class Node():
 
@@ -31,6 +31,32 @@ class BinaryTree():
         self.root = __insert_node(self.root, value)
 
 
+    def delete_node(self, value: Any) -> Optional[Any]:
+        
+        def replace(root):
+            pass
+        
+        
+        def __delete_node(root, value):
+            if root is None:
+                return root
+            elif value < root.value:
+                root.left = __delete_node(root.left, value)
+            elif value > root.value:
+                root.right = __delete_node(root.right, value)
+            else:
+                if root.left is None:
+                    return root.right
+                elif root.right is None:
+                    return root.left
+                else:
+                    min_value_node = self.find_min_value_node(root.right)
+                    root.value = min_value_node.value
+                    root.right = __delete_node(root.right, min_value_node.value)
+            return root
+
+        self.root = __delete_node(self.root, value)
+    
     def inorden(self) -> None:
         
         def __inorden(root):
